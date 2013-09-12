@@ -1,0 +1,52 @@
+<project>
+	<target name="release">
+		<!-- Copy over source code -->
+		<mkdir dir="${shiny.release.dir}/src/" />
+		<copy todir="${shiny.release.dir}/src/">
+			<fileset dir="src">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- Copy logo, license and readme -->
+		<copy todir="${shiny.release.dir}">
+			<fileset dir="${basedir}">
+				<include name="README.txt" />
+				<include name="LICENSE.txt" />
+				<include name="logo.png" />
+			</fileset>
+		</copy>
+
+		<!-- Copy over javadocs -->
+		<mkdir dir="${shiny.release.dir}/docs/apidocs" />
+		<copy todir="${shiny.release.dir}/docs/apidocs">
+			<filterchain>
+				<expandproperties />
+			</filterchain>
+
+			<fileset dir="${targetDir}/site/apidocs">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- Copy over static documentation -->
+		<copy todir="${shiny.release.dir}/docs">
+			<filterchain>
+				<expandproperties />
+			</filterchain>
+
+			<fileset dir="${basedir}/docs">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- Copy over created artifacts -->
+		<copy todir="${shiny.release.dir}">
+			<fileset dir="${targetDir}">
+				<include name="${finalName}.*" />
+			</fileset>
+		</copy>
+
+		<zip destfile="${targetDir}/${finalName}.zip" basedir="${shiny.release.dir}" />
+	</target>
+</project>

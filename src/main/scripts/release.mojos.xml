@@ -1,0 +1,50 @@
+<pluginMetadata>
+	<mojos>
+		<mojo>
+			<goal>release</goal>
+
+			<!-- this element refers to the Ant target we'll invoke -->
+			<call>release</call>
+			<requiresProject>true</requiresProject>
+
+			<description>
+				Build a release zip file.
+			</description>
+
+			<parameters>
+				<parameter>
+					<name>targetDir</name>
+					<property>targetDir</property>
+					<required>true</required>
+					<readonly>true</readonly>
+					<defaultValue>${project.build.directory}</defaultValue>
+					<type>java.lang.String</type>
+					<description>The output directory for the project.
+					</description>
+				</parameter>
+
+				<parameter>
+					<name>shiny.release.dir</name>
+					<property>shiny.release.dir</property>
+					<required>true</required>
+					<readonly>true</readonly>
+					<defaultValue>${project.build.directory}/release</defaultValue>
+					<type>java.lang.String</type>
+					<description>The directory where the release zip will be staged.
+					</description>
+				</parameter>
+
+				<parameter>
+					<name>finalName</name>
+					<property>finalName</property>
+					<required>true</required>
+					<readonly>true</readonly>
+					<defaultValue>${project.build.finalName}</defaultValue>
+					<type>java.lang.String</type>
+					<description>The final artifact name.
+					</description>
+				</parameter>
+			</parameters>
+		</mojo>
+	</mojos>
+</pluginMetadata>
